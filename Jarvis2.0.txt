@@ -1,17 +1,17 @@
 from threading import *
 import cv2 as cv
-
+import time
 
 import numpy as np
 
 import Haand_detection_module as hdm
 import math
-
+import numpy
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 
-
+import keyboard
 import pyttsx3
 import speech_recognition as sr
 import datetime
@@ -20,7 +20,7 @@ import pyautogui
 import os
 import webbrowser
 import time
-
+import multiprocessing
 
 
 class Hello(Thread):
@@ -34,7 +34,8 @@ class Hello(Thread):
         volPercentage = 0
 
         devices = AudioUtilities.GetSpeakers()
-        interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+        interface = devices.Activate(
+            IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
         volume = cast(interface, POINTER(IAudioEndpointVolume))
         # volume.GetMute()
         # volume.GetMasterVolumeLevel()
